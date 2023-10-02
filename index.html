@@ -34,12 +34,9 @@
         const btny = rect.top;
         console.log(btnx, btny);
 
-        // Reset position to the original values
         const avatarcord = document.getElementById("avatar-wrap");
-        avatarcord.style.top = "0px"; // Set the initial top position
-        avatarcord.style.left = "0px"; // Set the initial left position
-
-        // update cords
+        avatarcord.style.top = "0px";
+        avatarcord.style.left = "0px";
         const newXposition = btnx + 70;
         const newYposition = btny - 10;
 
@@ -48,24 +45,18 @@
         avatarcord.style.top = `${newYposition}px`;
         avatarcord.style.left = `${newXposition}px`;
 
-        // display comment box
-        // write into the box a p tag with desc of the button
         const comment = document.getElementById("avatar-comment");
         comment.style.display = "block";
 
-        // get the innerhtml of the button tag
         const btnInnerText = document.getElementById(id).innerText;
 
-        // Remove any existing paragraphs
         while (comment.firstChild) {
           comment.removeChild(comment.firstChild);
         }
 
-        // create a new paragraph in the commment div and append it.
         const paragraph = document.createElement("p");
         paragraph.textContent = `This is a button that ${btnInnerText}'s an element`;
 
-        // append it to the coment div
         comment.appendChild(paragraph);
       }
     </script>
