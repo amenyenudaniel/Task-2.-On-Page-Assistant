@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>On Page Assistant</title>
+  </head>
+  <body>
+    <div id="avatar-wrap">
+      <canvas id="bg"></canvas>
+      <div id="avatar-comment"></div>
+    </div>
+
+    <div id="button-wrapper">
+      <div class="box"><button id="1" onclick="getcord(1)">Play</button></div>
+      <div class="box"><button id="2" onclick="getcord(2)">Pause</button></div>
+      <div class="box">
+        <button id="3" onclick="getcord(3)">Sending</button>
+      </div>
+      <div class="box">
+        <button id="4" onclick="getcord(4)">Continue</button>
+      </div>
+      <div class="box"><button id="5" onclick="getcord(5)">Update</button></div>
+      <div class="box"><button id="6" onclick="getcord(6)">Delete</button></div>
+    </div>
+
+    <script>
+      // get the x and y coordinates of first btn and console log it.
+      function getcord(id) {
+        const btncord = document.getElementById(id);
+        const rect = btncord.getBoundingClientRect();
+        const btnx = rect.left;
+        const btny = rect.top;
+        console.log(btnx, btny);
+
+        // Reset position to the original values
+        const avatarcord = document.getElementById("avatar-wrap");
+        avatarcord.style.top = "0px"; // Set the initial top position
+        avatarcord.style.left = "0px"; // Set the initial left position
+
+        // update cords
+        const newXposition = btnx + 70;
+        const newYposition = btny - 10;
+
+        // set new cords.
+        avatarcord.style.transition = "all 1.3s ease-in-out";
+        avatarcord.style.top = `${newYposition}px`;
+        avatarcord.style.left = `${newXposition}px`;
+
+        // display comment box
+        // write into the box a p tag with desc of the button
+        const comment = document.getElementById("avatar-comment");
+        comment.style.display = "block";
+
+        // get the innerhtml of the button tag
+        const btnInnerText = document.getElementById(id).innerText;
+
+        // Remove any existing paragraphs
+        while (comment.firstChild) {
+          comment.removeChild(comment.firstChild);
+        }
+
+        // create a new paragraph in the commment div and append it.
+        const paragraph = document.createElement("p");
+        paragraph.textContent = `This is a button that ${btnInnerText}'s an element`;
+
+        // append it to the coment div
+        comment.appendChild(paragraph);
+      }
+    </script>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
